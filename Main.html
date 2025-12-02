@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karan Singh - Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0d0d0d;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .education-section {
+            padding: 80px 0;
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .education-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .edu-item {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            padding: 22px;
+            border-radius: 12px;
+            transition: 0.3s ease;
+        }
+
+        body.dark .edu-item {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .edu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .edu-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .edu-year {
+            font-size: 14px;
+            font-weight: 600;
+            background: #4f46e5;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .edu-college {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-color-muted);
+            margin: 4px 0;
+        }
+
+        .edu-desc {
+            font-size: 14px;
+            color: var(--text-color-light);
+            line-height: 1.6;
+        }
+
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            padding: 120px 20px 80px;
+        }
+
+        header img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid #00ff99;
+            object-fit: cover;
+        }
+
+        header h1 {
+            font-size: 52px;
+            margin: 20px 0 10px;
+        }
+
+        header p {
+            font-size: 22px;
+            color: #bbb;
+        }
+
+        nav {
+            text-align: center;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid #111;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #00ff99;
+        }
+
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            font-size: 38px;
+            border-bottom: 2px solid #00ff99;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .skills,
+        .projects,
+        .certs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(20, 20, 20, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            transition: 0.3s;
+            border: 1px solid #222;
+            box-shadow: 0 0 20px rgba(0, 255, 153, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: #00ff99;
+            box-shadow: 0 0 25px rgba(0, 255, 153, 0.3);
+        }
+
+        .progress {
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+            height: 10px;
+        }
+
+        .progress div {
+            height: 100%;
+            background: #00ff99;
+            width: 80%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #000;
+            color: #777;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #00ff99;
+            border-radius: 8px;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .socials {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .socials a {
+            margin: 0 10px;
+            font-size: 24px;
+            color: #00ff99;
+            text-decoration: none;
+        }
+
+        /* Dark Mode Styles */
+        body.dark {
+            background: #111;
+            color: #eee;
+        }
+
+        body.dark nav {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark .card {
+            background: #1b1b1b;
+            color: #eee;
+        }
+
+        body.dark h1,
+        body.dark h2 {
+            color: #fff;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            padding: 10px 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark #theme-toggle {
+            background: #333;
+            color: #fff;
+        }
+
+        /* Modern neon gradient background */
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+        }
+
+        /* Soft floating lights */
+        body:before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1), transparent 40%),
+                radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.08), transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.06), transparent 40%);
+            filter: blur(40px);
+            z-index: -1;
+            animation: glowMove 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes glowMove {
+            0% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(20px);
+            }
+        }
+
+        /* Frosted glass nav */
+        nav {
+            background: rgba(255, 255, 255, 0.05) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Download Button */
+        .download-btn {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 12px 22px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+</head>
+
+<body>
+    <canvas id="bg"></canvas>
+    <header>
+
+        <h1>Karan Singh</h1>
+        <p><span id="typing"></span></p>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certs">Certifications</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I’m a Machine Learning enthusiast with experience in Python, Jupyter notebooks, data analysis and model
+            development. </p>
+        <p>Passionate Machine Learning enthusiast with strong foundations in Python, Java, and data-driven problem
+            solving.</p>
+        <p>Driven by curiosity and precision, I connect theory with practical solutions to create impactful projects.
+        </p>
+    </section>
+    <section class="education-section" id="education" data-aos="fade-up">
+        <h2 class="section-title">Education</h2>
+
+        <div class="education-container">
+            <div class="edu-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="edu-header">
+                    <h3>Mastery in Computer Applications</h3>
+                    <span class="edu-year">2025 - 2027</span>
+                </div>
+                <p class="edu-college">K.R.Manglam University</p>
+                <p class="edu-desc">
+                    Completing my MCA with a focus on advanced algorithms, AI, and software engineering principles.
+                </p>
+            </div>
+
+
+            <div class="edu-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="edu-header">
+                    <h3>Bachelor of Technology in Computer Science</h3>
+                    <span class="edu-year">2022 - 2025</span>
+                </div>
+                <p class="edu-college">D.P.G degree college</p>
+                <p class="edu-desc">
+                    Focused on Machine Learning, Data Structures, and Full Stack Web Development.
+                </p>
+            </div>
+
+            <div class="edu-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="edu-header">
+                    <h3>High School (PCM)</h3>
+                    <span class="edu-year">2019 - 2021</span>
+                </div>
+                <p class="edu-college">Swiss Cottage School</p>
+                <p class="edu-desc">
+                    Completed coursework with emphasis on Computer Science, Mathematics, and Physics.
+                </p>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section id="skills" data-aos="fade-up">
+        <h2>Skills</h2>
+        <div class="skills">
+            <div class="card">
+                <h3>Machine Learning</h3>
+                <p>Classification, Regression, Clustering</p>
+                <div class="progress">
+                    <div style="width:90%"></div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Python Stack</h3>
+                <p>Pandas, NumPy, Matplotlib</p>
+                <div class="progress">
+                    <div style="width:85%"></div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Web Development</h3>
+                <p>HTML, CSS, JavaScript</p>
+                <div class="progress">
+                    <div style="width:80%"></div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>SQL</h3>
+                <p>Schema design, Aggregation</p>
+                <div class="progress">
+                    <div style="width:75%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="projects" data-aos="fade-up">
+        <h2>Projects</h2>
+        <div class="projects">
+            <div class="card">
+                <h3>Tip Prediction</h3>
+                <p>Feature engineering and regression model.</p>
+            </div>
+            <div class="card">
+                <h3>Particle Background</h3>
+                <p>CSS animated effect.</p>
+            </div>
+            <div class="card">
+                <h3>College DB</h3>
+                <p>Database schema and queries.</p>
+            </div>
+        </div>
+    </section>
+    <section id="certs" data-aos="fade-up">
+
+        <h2>Certifications</h2>
+        <div class="certs">
+            <div class="card">
+                <h3>ML cerificate</h3>
+                <p>ML certificate in Machine Learning by</p>
+            </div>
+            <div class="card">
+                <h3>SQL Mastery</h3>
+                <p>Designed optimized relational schemas.</p>
+            </div>
+            <div class="card">
+                <h3>Frontend Dev</h3>
+                <p>Responsive UI and animations.</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Email: karanjangra8941@gmail.com</p>
+        <p>GitHub: github.com/KaranSingh-36</p>
+        <p>LinkedIn: linkedin.com/in/</p><a class="btn" href="/Resume.pdf">Download Resume</a>
+        <div class="socials"><a href="#">◆</a><a href="#">◆</a></div>
+    </section>
+    <footer>
+        <p>© 2025 Karan Singh. All Rights Reserved.</p>
+    </footer>
+    <script>
+        // smooth scroll
+        document.querySelectorAll('nav a').forEach(a => { a.addEventListener('click', e => { e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }); }); });
+        // typing
+        const words = ["Machine Learning Engineer", "Web Developer", "Problem Solver"]; let i = 0, l = 0, del = false, el = document.getElementById("typing"); function type() {
+            el.innerText = words[i].substring(0, l);
+
+            if (!del) {
+                l++;
+                if (l === words[i].length) {
+                    del = true;
+                    setTimeout(type, 800); // pause after full word
+                    return;
+                }
+            } else {
+                l--;
+                if (l === 0) {
+                    del = false;
+                    i = (i + 1) % words.length;
+                    setTimeout(type, 500); // pause before next word
+                    return;
+                }
+            }
+
+            setTimeout(type, del ? 50 : 100);
+        }
+
+        setTimeout(type, 300);
+        // particles
+        const c = document.getElementById('bg'); const ctx = c.getContext('2d'); let w, h, p = []; function resize() { w = c.width = innerWidth; h = c.height = innerHeight; } addEventListener('resize', resize); resize(); for (let i2 = 0; i2 < 120; i2++)p.push({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 3, d: Math.random() * 1 + 0.2 }); function draw() { ctx.clearRect(0, 0, w, h); ctx.fillStyle = "#00ff99"; p.forEach(o => { ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, 6.28); ctx.fill(); o.x += (Math.random() - 0.5) * o.d; o.y += (Math.random() - 0.5) * o.d; if (o.x < 0 || o.x > w || o.y < 0 || o.y > h) { o.x = Math.random() * w; o.y = Math.random() * h; } }); requestAnimationFrame(draw); } draw();
+    </script>
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle">🌓</button>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark'));
+        });
+        if (localStorage.getItem('theme') === 'true') document.body.classList.add('dark');
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 800,
+            easing: "ease-in-out",
+            offset: 100
+        });
+    </script>
+
+
+</body>
+
+</html>
