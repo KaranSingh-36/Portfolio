@@ -441,8 +441,8 @@
                 <p>CSS animated effect.</p>
             </div>
             <div class="card">
-                <h3>College DB</h3>
-                <p>Database schema and queries.</p>
+                <h3></h3>
+                <p></p>
             </div>
         </div>
     </section>
@@ -455,12 +455,12 @@
                 <p>ML certificate in Machine Learning by</p>
             </div>
             <div class="card">
-                <h3>SQL Mastery</h3>
-                <p>Designed optimized relational schemas.</p>
+                <h3>For Future</h3>
+                <p>When I got certificate i will deploy here</p>
             </div>
             <div class="card">
-                <h3>Frontend Dev</h3>
-                <p>Responsive UI and animations.</p>
+                <h3>Future</h3>
+                <p>Future</p>
             </div>
         </div>
     </section>
@@ -468,7 +468,7 @@
         <h2>Contact</h2>
         <p>Email: karanjangra8941@gmail.com</p>
         <p>GitHub: github.com/KaranSingh-36</p>
-        <p>LinkedIn: linkedin.com/in/</p><a class="btn" href="/Resume.pdf">Download Resume</a>
+        <p>LinkedIn: linkedin.com/in/karan-singh/</p><a class="btn" href="/Resume.pdf">Download Resume</a>
         <div class="socials"><a href="#">◆</a><a href="#">◆</a></div>
     </section>
     <footer>
@@ -524,6 +524,46 @@
             easing: "ease-in-out",
             offset: 100
         });
+    </script>
+    <canvas id="mathCanvas"></canvas>
+
+    <script>
+        const cvs = document.getElementById("mathCanvas");
+        const ctx2 = cvs.getContext("2d");
+
+        function resizeMath() {
+            cvs.width = innerWidth;
+            cvs.height = innerHeight;
+        }
+        addEventListener("resize", resizeMath);
+        resizeMath();
+
+        let t = 0;
+
+        function drawMath() {
+            ctx2.clearRect(0, 0, cvs.width, cvs.height);
+            ctx2.save();
+            ctx2.translate(cvs.width / 2, cvs.height / 2);
+
+            let a = 3, b = 2;
+            let scale = 180;
+
+            for (let i = 0; i < 1000; i++) {
+                let angle = i / 100 * Math.PI * 2;
+
+                let x = Math.sin(a * angle + t) * scale;
+                let y = Math.sin(b * angle) * scale;
+
+                ctx2.fillStyle = `hsla(${(i + t * 10) % 360},100%,60%,0.8)`;
+                ctx2.fillRect(x, y, 3, 3);
+            }
+
+            ctx2.restore();
+            t += 0.01;
+
+            requestAnimationFrame(drawMath);
+        }
+        drawMath();
     </script>
 
 
